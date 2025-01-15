@@ -2,27 +2,52 @@
 
 👋 Welcome!
 
-It's great to have you here. I'm sure you will love this course. ❤️
+This is my cloned repository from the course 'Cypress, from Zero to the Cloud', where I learned about Cypress and was introduced to the world of automated testing
 
-## What you will learn from the course
+## Prerequisites to run the project
 
-- How to set up a Cypress project from scratch
-- How to visit local and remote pages
-- How to deal with elements most commonly found in web applications
-- How to test file uploading
-- How to perform various assertions of expected results
-- How to create custom commands
-- How to deal with links that open in another browser tab
-- How to run tests simulating a mobile device
-- How to solve the same problems in different ways, using the [Cypress API](https://docs.cypress.io/api/table-of-contents)
-- How to create effective documentation for your automated testing project
-- How to run tests in a continuous integration (CI) workflow
-- How to integrate your CI workflow with the Cypress Cloud
+- Cypress - `v13.1.0`
+- Git - `v2.34.1`
+- Node.js `v18.15.0`
+- npm `v9.5.0`
 
-## Let's start
+> I suggest you use the same or later LTS versions.
 
-Go to the [course structure](./lessons/_course-structure_.md) section.
+## Steps to install
 
-___
+1. Open the browser and visit the URL https://github.com/wlsf82/cypress-from-zero-to-the-cloud.
 
-This is a course from [**Talking About Testing School**](https://udemy.com/user/walmyr).
+2. Fork the project's repo.
+
+3. In your project fork, click the Code button, choose the clone via SSH option, and copy the project clone link.
+
+4. In your command line terminal (in a folder where you store your software projects), run the command git clone [paste-the-copied-link-here].
+
+5. After the project is cloned, access the newly cloned directory (cd cypress-from-zero-to-the-cloud/).
+
+6. Install the dev dependencies, run `npm install`.
+
+7. Run the command `npm install cypress@13.1.0 --save-dev` to install the cypress.
+
+## Steps to run 
+
+1. Run the command `npx cypress open` to open Cypress for the first time, and let it guide you through the creation of an end-to-end testing suite.
+
+2. Set the configuration of Cypress in `cypress.config.js` as follows:
+```javascript
+const { defineConfig } = require('cypress')
+
+module.exports = defineConfig({
+  viewportHeight: 880,
+  viewportWidth: 1280,
+  e2e: {},
+})
+```
+
+4. Done!
+
+## Tests
+
+Run `npm test` (or `npm t` for the short version) to run the tests in headless mode.
+
+Or, run `npm run cy:open` to open the Cypress App and run the tests in interactive mode.
