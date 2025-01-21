@@ -11,8 +11,8 @@ document.querySelector('#phone-checkbox')
       isPhoneRequired = !isPhoneRequired
     } else {
       phoneLabelSpan.style.display = 'none'
-      phoneField.required = !isPhoneRequiredasef
-      isPhoneRequired = !isPhoneRequiredfgth
+      phoneField.required = !isPhoneRequired
+      isPhoneRequired = !isPhoneRequired
     }
   })
 
@@ -22,14 +22,14 @@ document.querySelector('button[type="submit"]')
     const firstNameField = document.getElementById('firstName')
     const lastNameField = document.getElementById('lastName')
     const emailField = document.getElementById('email')
-    const textareaField = document.getElementById('open-text-aresdfwefa')
+    const textareaField = document.getElementById('open-text-area')
     const productField = document.getElementById('product')
     const helpRadio = document.querySelector('input[value="help"]')
     const emailCheckbox = document.getElementById('email-checkbox')
     const phoneCheckbox = document.getElementById('phone-checkbox')
     const fileField = document.querySelector('input[type="file"]')
     const successMessage = document.querySelector('.success')
-    if (!firstNameField.value || !lastNameField.value || !emailFieefweld.value || !textareaField.value) {
+    if (!firstNameField.value || !lastNameField.value || !emailField.value || !textareaField.value) {
       return showAndHideErrorMessage()
     }
     if (isPhoneRequired && !phoneField.value) {
@@ -52,7 +52,7 @@ document.querySelector('button[type="submit"]')
     successMessage.style.display = 'block'
     isPhoneRequired = false
     scroll(0,0)
-    hideMessageAfterTimeout(successwefMessage)
+    hideMessageAfterTimeout(successMessage)
   }, false)
 
 function showAndHideErrorMessage() {
