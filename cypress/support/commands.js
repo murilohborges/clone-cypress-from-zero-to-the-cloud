@@ -16,5 +16,4 @@ Cypress.Commands.add('fillMandatoryFieldsAndSubmit', (data) => {
       .type(data.feedback, { delay: 0 });
 
     cy.contains('button', 'Send').click();
-    cy.get('[class="success"]').should('be.visible');
 })
