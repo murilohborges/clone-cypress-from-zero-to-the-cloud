@@ -9,30 +9,33 @@ describe('TAT Costumer Service Center', () => {
     cy.title().should('be.equal', 'TAT Customer Service Center')
   });
   
-  //Exercise e extra 1
-  it('fills in the require fields and submits the form', () => {
-    cy.clock();
-    cy.get('#firstName')
-      .should('be.visible')
-      .type('João');
+  //Exercise e extra 1 (with Cypress._.times)
+  Cypress._.times(3, () => {
+    it('fills in the require fields and submits the form', () => {
+      cy.clock();
 
-    cy.get('#lastName')
-      .should('be.visible')
-      .type('Silva');
-
-    cy.get('#email')
-      .should('be.visible')
-      .type('joaosilva@email.com');
-
-    cy.get('#open-text-area')
-      .should('be.visible')
-      .type('I am satisfied with my order, the product is amazing!', { delay: 0 });
-
-    cy.contains('button', 'Send').click();
-    cy.get('[class="success"]').should('be.visible');
-    cy.tick(3000);
-    cy.get('[class="success"]').should('not.be.visible');
-  })
+      cy.get('#firstName')
+        .should('be.visible')
+        .type('João');
+  
+      cy.get('#lastName')
+        .should('be.visible')
+        .type('Silva');
+  
+      cy.get('#email')
+        .should('be.visible')
+        .type('joaosilva@email.com');
+  
+      cy.get('#open-text-area')
+        .should('be.visible')
+        .type('I am satisfied with my order, the product is amazing!', { delay: 0 });
+  
+      cy.contains('button', 'Send').click();
+      cy.get('[class="success"]').should('be.visible');
+      cy.tick(3000);
+      cy.get('[class="success"]').should('not.be.visible');
+    });
+  });
 
   //Extra 2
   it('displays an error message when submitting the form with an email with invalid formatting', () => {
@@ -261,5 +264,41 @@ describe('TAT Costumer Service Center', () => {
 
     cy.get('h1').contains('h1', 'TAT CSC - Privacy Policy').should('be.visible')
   })
+
+
+  //Lesson 12
+  //Extra exercise 2 
+  it('displays and hides the success and error messages using `.invoke()`', () => {
+    cy.get('.success')
+      .should('not.be.visible')
+      .invoke('show')
+      .should('be.visible')
+      .contains('Message successfully sent.');
+
+    cy.get('.error')
+      .should('not.be.visible')
+      .invoke('show')
+      .should('be.visible')
+      .contains('Validate the required fields!')
+  })
+
+  //Extra exercise 3
+  it('fills in the text area field using the invoke command', () => {
+    cy.get('#open-text-area')
+      .invoke('val', 'Testando função invoke()')
+      .should('have.value', 'Testando função invoke()')
+  }); 
+
+  it('makes an HTTP request', () => {
+    cy.request({
+      method: 'GET',
+      url: 'https://tat-csc.s3.sa-east-1.amazonaws.com/index.html'
+    }).then((response) => {
+      expect(response.status).to.equal(200);
+      expect(response.statusText).to.equal("OK");
+      expect(response.body).contains('TAT CSC')
+      console.log(response)
+    })
+  });
 
 })
