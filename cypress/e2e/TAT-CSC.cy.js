@@ -10,7 +10,8 @@ describe('TAT Costumer Service Center', () => {
   });
   
   //Exercise e extra 1
-  it('fills in the require fields and submits the form', () => {
+  it.only('fills in the require fields and submits the form', () => {
+    cy.clock();
     cy.get('#firstName')
       .should('be.visible')
       .type('João');
@@ -27,7 +28,6 @@ describe('TAT Costumer Service Center', () => {
       .should('be.visible')
       .type('I am satisfied with my order, the product is amazing!', { delay: 0 });
 
-    cy.clock();
     cy.contains('button', 'Send').click();
     cy.get('[class="success"]').should('be.visible');
     cy.tick(3000);
@@ -36,6 +36,7 @@ describe('TAT Costumer Service Center', () => {
 
   //Extra 2
   it('displays an error message when submitting the form with an email with invalid formatting', () => {
+    cy.clock()
     cy.get('#firstName')
       .should('be.visible')
       .type('João');
@@ -52,7 +53,6 @@ describe('TAT Costumer Service Center', () => {
       .should('be.visible')
       .type('I am satisfied with my order, the product is amazing!', { delay: 0 });
 
-    cy.clock()
     cy.contains('button', 'Send').click();
     cy.get('[class="error"]').should('be.visible');
     cy.tick(3000);
@@ -70,6 +70,7 @@ describe('TAT Costumer Service Center', () => {
 
   //Extra 4
   it('displays an error message when the phone becomes required but is not filled in before the form submission', () => {
+    cy.clock();
     cy.get('#firstName')
       .should('be.visible')
       .type('João');
@@ -88,7 +89,6 @@ describe('TAT Costumer Service Center', () => {
       
     cy.get('#phone-checkbox').click()
 
-    cy.clock();
     cy.contains('button', 'Send').click();
     cy.get('[class="error"]').should('be.visible');
     cy.tick(3000);
@@ -196,6 +196,7 @@ describe('TAT Costumer Service Center', () => {
 
   //Extra - test revised)
   it.only('displays an error message when the phone becomes required but is not filled in before the form submission (revised)', () => {
+    cy.clock();
     cy.get('#firstName')
       .should('be.visible')
       .type('João');
@@ -213,7 +214,7 @@ describe('TAT Costumer Service Center', () => {
       .type('I am satisfied with my order, the product is amazing!', { delay: 0 });
       
     cy.get('#phone-checkbox').check()
-    cy.clock();
+    
     cy.contains('button', 'Send').click();
     cy.get('[class="error"]').should('be.visible');
     cy.tick(3000)
