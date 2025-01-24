@@ -10,7 +10,7 @@ describe('TAT Costumer Service Center', () => {
   });
   
   //Exercise e extra 1
-  it.only('fills in the require fields and submits the form', () => {
+  it('fills in the require fields and submits the form', () => {
     cy.clock();
     cy.get('#firstName')
       .should('be.visible')
@@ -195,7 +195,7 @@ describe('TAT Costumer Service Center', () => {
   })
 
   //Extra - test revised)
-  it.only('displays an error message when the phone becomes required but is not filled in before the form submission (revised)', () => {
+  it('displays an error message when the phone becomes required but is not filled in before the form submission (revised)', () => {
     cy.clock();
     cy.get('#firstName')
       .should('be.visible')
