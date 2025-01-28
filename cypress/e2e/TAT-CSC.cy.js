@@ -289,15 +289,14 @@ describe('TAT Costumer Service Center', () => {
       .should('have.value', 'Testando função invoke()')
   }); 
 
-  it('makes an HTTP request', () => {
+  it.only('makes an HTTP request', () => {
     cy.request({
       method: 'GET',
       url: 'https://tat-csc.s3.sa-east-1.amazonaws.com/index.html'
-    }).then((response) => {
+    }).as('getRequest').then((response) => {
       expect(response.status).to.equal(200);
       expect(response.statusText).to.equal("OK");
-      expect(response.body).contains('TAT CSC')
-      console.log(response)
+    cy.get('@getRequest').its('body').should('include', 'TAT CSC')
     })
   });
 
