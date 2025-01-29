@@ -289,7 +289,7 @@ describe('TAT Costumer Service Center', () => {
       .should('have.value', 'Testando função invoke()')
   }); 
 
-  it.only('makes an HTTP request', () => {
+  it('makes an HTTP request', () => {
     cy.request({
       method: 'GET',
       url: 'https://tat-csc.s3.sa-east-1.amazonaws.com/index.html'
@@ -299,5 +299,14 @@ describe('TAT Costumer Service Center', () => {
     cy.get('@getRequest').its('body').should('include', 'TAT CSC')
     })
   });
+
+  it('Challenge - find the Cat', () => {
+    cy.get('#cat')
+      .as('cat-lost')
+      .should('not.be.visible')
+    cy.get('@cat-lost')
+      .invoke('show')
+      .should('be.visible')
+  })
 
 })
